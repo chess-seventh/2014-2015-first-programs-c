@@ -1,0 +1,371 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+typedef struct Pile{
+	int n;
+	struct Pile *next;
+}PILE_T;
+
+
+/*
+typedef struct Elem{
+//	int nombre;
+	struct Pile *premier;
+}ELEM_T; */
+
+
+PILE_T *init_p()
+{
+	return NULL;
+}
+
+
+void tab_rand(int tab[], int a)
+{
+	int i = 0;
+	srand(time(NULL));
+	for(i=0 ; i < a ; i++)
+	{
+		tab[i] = rand()%77 ;
+		printf("Num Alea #%d = %d \n", i, tab[i]);
+	}
+}
+
+void user_input(int tab[], int a)
+{
+	int i;
+	for(i=0;i<a;i++)
+	{
+		printf("Rentrez la %d-ème valeur du tableau: ", i+1);
+		scanf("%d", &tab[i]);
+	}
+}
+
+
+PILE_T *push(PILE_T *maPile, int nbr)
+{
+	PILE_T *nouveau_element = malloc(sizeof(*nouveau_element));
+
+	if(nouveau_element == NULL)
+	{
+		exit(EXIT_FAILURE);
+		printf("fail dans push\n");
+	}
+	nouveau_element->n = nbr;
+	nouveau_element->next = maPile;
+
+	return nouveau_element;
+}
+
+
+PILE_T *pop(PILE_T *maPile)
+{
+	PILE_T *elem_suivant ;
+
+	if(maPile == NULL)
+	{
+		exit(EXIT_FAILURE);
+		printf("fail dans pop\n");
+	}
+
+	elem_suivant = maPile->next;
+	free(maPile);
+	return elem_suivant;
+}
+
+int top(PILE_T *maPile)
+{
+	if(maPile == NULL)
+	{
+		exit(EXIT_FAILURE);
+		printf("fail dans top\n");
+
+	}
+
+	return maPile->n;
+}
+
+
+//int triage(int tab_val, PILE_T *p1, PILE_T *p2){
+
+//	printf("dans triage\n");
+
+
+//}
+
+/*
+
+
+int triage1(int tab_val, PILE_T *p1, PILE_T *p2)
+{
+
+	printf("valeur de tab_val : %d\n",tab_val);
+	p1 = push(p1, tab_val);
+	printf("valeur de top p1 : %d\n",top(p1));
+	printf("valeur de top p2 : %d\n",top(p2));
+}
+
+int triage2(int tab_val, PILE_T *p1, PILE_T *p2)
+{
+
+	printf("valeur de tab_val : %d\n",tab_val);
+	p2 = push(p2, top(p1));
+	p1 = pop(p1);
+	printf("valeur de top p1 : %d\n",top(p1));
+	printf("valeur de top p2 : %d\n",top(p2));
+
+}
+
+*/
+
+
+
+/*
+	while (tab_val < top(p1)){
+
+		p2 = push(p2, top(p1));
+		p1 = pop(p1);
+		
+		if (tab_val >= top(p1))
+		{
+			p1 = push(p1, tab_val);
+		}
+		
+		printf("valeur du premier dans p1 %d\n",top(p1));
+		printf("valeur du premier dans p2 %d\n",top(p2));
+		};
+
+	while (tab_val < top(p2)){
+		
+		p1 = push(p1, top(p2));
+		p2 = pop(p2);
+		
+		if(tab_val <= top(p2)){
+			p1 = push(p1,tab_val);
+		}
+			printf("valeur du premier dans p1 %d\n",top(p1));
+			printf("valeur du premier dans p2 %d\n",top(p2));
+			return;
+	};
+
+//}while(p2 != NULL);
+
+	//p1 = push(p1, tab_val);
+
+		printf("valeur du premier dans p1 %d\n",top(p1));
+		printf("valeur du premier dans p2 %d\n",top(p2));
+
+*/
+
+/*
+
+//do{
+
+if (p1 == NULL && p2 == NULL)
+	{
+	p1 = push(p1,tab_val) ;
+	printf("valeur du premier dans p1 %d\n",top(p1));
+	printf("valeur du premier dans p2 %d\n",top(p2));
+	}
+
+if(p1 != NULL && p2 == NULL){
+
+	while(p1 != NULL && tab_val < top(p1))
+		{
+
+			printf("valeur du premier dans p1 %d\n",top(p1));
+			printf("valeur du premier dans p2 %d\n",top(p2));
+
+		printf("premier while\n");
+
+			if (p1 == NULL && p2 == NULL) {
+				p1 = push(p1, tab_val);
+				printf("valeur de top p1 = %d\nvaleur de top p2 = %d\n\n\n",top(p1),top(p2)) ;
+
+				break; }
+
+			p1 = push(p1, top(p2)) ;
+			if (p2 != NULL){
+			p2 = pop(p2) ;}
+
+			printf("dans le while tab_val > top p \n");
+			printf("valeur du premier dans p1 %d\n",top(p1));
+			printf("valeur du premier dans p2 %d\n",top(p2));
+
+		}
+*/
+
+
+/*
+	while(tab_val < top(p2) && p2 != NULL)
+		{
+
+printf("deuxieme while\n");
+
+			p1 = push(p1,top(p2));
+			if (p2 != NULL){
+			p2 = pop(p2);}
+			p1 = push(p1, tab_val);
+
+			printf("dans le while tab_val < top p \n");
+			printf("valeur du premier dans p1 %d\n",top(p1));
+			printf("valeur du premier dans p2 %d\n",top(p2));
+
+		}
+
+}
+//} while(p1 > p1->next && p2 == NULL) ;
+*/
+
+
+int main()
+{
+	int uInput;
+	int uPlay;
+
+//	struct Elem *premier = NULL;
+
+	PILE_T *maPile_1 = init_p();
+//	Elem->premier = NULL;
+	PILE_T *maPile_2 = init_p();
+//	F_ELEM *Elem->premier = NULL;
+
+//	maPile_1 = push(maPile_1,10);
+//	maPile_1 = push(maPile_1,12);
+//	maPile_1 = pop(maPile_1);
+//	printf("%d\n", top(maPile_1));
+
+	int iTab[5];
+
+	tab_rand(iTab,5);
+
+	int i;
+
+
+
+
+
+
+//	for(i=0;i>5;i++)
+
+do{
+	printf("itab %d \n", iTab[i]);
+
+//	printf("valeur de top mapile1 : %d\n",top(maPile_1));
+//	printf("valeur de top mapile2 : %d\n",top(maPile_2));
+
+/*
+
+	while(iTab[i] > top(maPile_1))
+		{
+	//	if(p1->next == NULL) {break;}
+		printf("dans boucle while tabval > top p1 \n");
+
+		maPile_2 = push(maPile_2, top(maPile_1));
+		pop(maPile_1);
+
+		}
+
+	while (iTab[i] < top(maPile_2))
+		{
+		printf("dans boucle while tabval < top p2 \n");
+
+		maPile_1 = push(maPile_1, top(maPile_2));
+		pop(maPile_2);
+//	if(p2 == NULL || p2->next == NULL) {break;}
+		maPile_1 = push (maPile_1, iTab[i]);
+
+		}
+
+*/
+
+	printf("fin for\n");
+	i = i+1;
+
+	}while(i =! 5);
+
+
+		//	printf("top p1 %d \n", top(push(maPile_1, 108)));
+		//printf("top p1 %d \n", top(push(maPile_1, 1080)));
+
+
+		//push(maPile_1, iTab[i]);
+
+//		triage(iTab[i], maPile_1, maPile_2);
+
+
+	}
+
+
+/*7
+
+//		triage2(iTab[i], maPile_1, maPile_2);
+
+
+	//		maPile_1 = push(maPile_1, iTab[i]);
+//		printf("Pile 1 : %d\n", top(maPile_1));
+//		printf("")
+
+	//	if(maPile_1 == NULL || maPile_1 -> next == NULL) {break;})
+
+//		triage(iTab[i],maPile_1,maPile_2, i);}
+
+/*
+	for(i=1;i<2;i++)
+	{
+		if(top(maPile_1)<iTab[i])
+		{
+			maPile_2 = push(maPile_2, top(maPile_1));
+			maPile_1 = pop(maPile_1);
+			printf("Pile 2 : %d\n", top(maPile_2));
+
+		if(top(maPile_1)>iTab[i])
+		{
+		}
+
+
+
+//	printf("derniere elemnt ajouté dans ma pile : %d \n",top(maPile_1));
+	}
+
+
+
+/*
+
+	printf("Choisis avec combien de valeurs tu veux jouer: \n");
+	scanf("%d",&uPlay);
+
+	int* point_iTab = iTab;
+
+	printf("Choisis: \n");
+	printf("1: Random par ordinateur \n");
+	printf("2: User Input \n");
+	printf("9: Quit \n");
+	scanf("%d",&uInput);
+
+		switch(uInput)
+		{
+		case 1 :
+		tab_rand(iTab, uPlay);
+		break;
+		case 2 :
+		user_input(iTab, uPlay);
+		break;
+
+		case 9 :
+		break;
+
+		default :
+		printf("UNVALID - TRY AGAIN !\n");
+		exit(EXIT_FAILURE);
+		break;
+		}
+
+
+//return 0;
+
+*/
+
+
